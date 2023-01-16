@@ -69,7 +69,7 @@ WHERE
 /* I set the value as default on ALTER TABLE to ADD the column */
 /* Because if not, i can't set NOT NULL to the column because we have */
 /* previous data without the value */
-BEGIN TRANSACTION;
+BEGIN;
 
 UPDATE animals
 SET
@@ -78,7 +78,7 @@ SET
 ROLLBACK;
 
 /*UPDATE species COLUMN TRANSACTION */
-BEGIN TRANSACTION;
+BEGIN;
 
 UPDATE animals
 SET
@@ -91,5 +91,37 @@ SET
     species = 'pokemon'
 WHERE
     species = 'unspecified';
+
+COMMIT;
+
+/* DELETE all records into a TRANSACTION then ROLLBACK */
+BEGIN;
+
+DELETE FROM animals;
+
+ROLLBACK;
+
+/* UPDATE with SAVEPOINT */
+BEGIN;
+
+SAVEPOINT SP0;
+
+DELETE FROM animals
+WHERE
+    date_of_birth > '2022/01/01';
+
+SAVEPOINT sp1;
+
+UPDATE animals
+SET
+    weight_kg = weight_kg * -1;
+
+ROLLBACK TO SAVEPOINT sp1;
+
+UPDATE animals
+SET
+    weight_kg = weight_kg * -1
+WHERE
+    weight_kg < 0;
 
 COMMIT;

@@ -64,3 +64,120 @@ FROM
     animals
 WHERE
     weight_kg BETWEEN 10.4 AND 17.3;
+
+/* UPDATE species to 'unspecified' */
+/* I set the value as default on ALTER TABLE to ADD the column */
+/* Because if not, i can't set NOT NULL to the column because we have */
+/* previous data without the value */
+BEGIN;
+
+UPDATE animals
+SET
+    species = 'unspecified';
+
+ROLLBACK;
+
+/*UPDATE species COLUMN TRANSACTION */
+BEGIN;
+
+UPDATE animals
+SET
+    species = 'digimon'
+WHERE
+    name like '%mon';
+
+UPDATE animals
+SET
+    species = 'pokemon'
+WHERE
+    species = 'unspecified';
+
+COMMIT;
+
+/* DELETE all records into a TRANSACTION then ROLLBACK */
+BEGIN;
+
+DELETE FROM animals;
+
+ROLLBACK;
+
+/* UPDATE with SAVEPOINT */
+BEGIN;
+
+SAVEPOINT SP0;
+
+DELETE FROM animals
+WHERE
+    date_of_birth > '2022/01/01';
+
+SAVEPOINT sp1;
+
+UPDATE animals
+SET
+    weight_kg = weight_kg * -1;
+
+ROLLBACK TO SAVEPOINT sp1;
+
+UPDATE animals
+SET
+    weight_kg = weight_kg * -1
+WHERE
+    weight_kg < 0;
+
+COMMIT;
+
+/* QUERIES */
+/* How many animals are there? */
+SELECT
+    COUNT(*)
+FROM
+    animals;
+
+/* How many animals have never tried to escape? */
+SELECT
+    COUNT(*)
+FROM
+    animals
+WHERE
+    escape_attempts = 0;
+
+/* What is the average weight of animals? */
+SELECT
+    AVG(weight_kg)
+from
+    animals;
+
+/* Who escapes the most, neutered or not neutered animals? */
+SELECT
+    name,
+    escape_attempts
+FROM
+    animals
+WHERE
+    escape_attempts = (
+        SELECT
+            MAX(escape_attempts)
+        FROM
+            animals
+    );
+
+/* What is the minimum and maximum weight of each type of animal? */
+SELECT
+    species,
+    MIN(weight_kg),
+    MAX(weight_kg)
+FROM
+    animals
+GROUP BY
+    species;
+
+/* What is the average number of escape attempts per animal type of those born between 1990 and 2000? */
+SELECT
+    species,
+    AVG(escape_attempts)
+FROM
+    animals
+WHERE
+    date_of_birth BETWEEN '1990/01/01' AND '2000/12/31'
+GROUP BY
+    species;

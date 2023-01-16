@@ -23,3 +23,5 @@ CREATE TABLE
         weight_kg decimal NOT NULL,
         PRIMARY KEY (ID)
     );
+
+ALTER TABLE animals ADD species VARCHAR(100) NOT NULL DEFAULT 'unspecified';

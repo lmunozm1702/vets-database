@@ -64,3 +64,32 @@ FROM
     animals
 WHERE
     weight_kg BETWEEN 10.4 AND 17.3;
+
+/* UPDATE species to 'unspecified' */
+/* I set the value as default on ALTER TABLE to ADD the column */
+/* Because if not, i can't set NOT NULL to the column because we have */
+/* previous data without the value */
+BEGIN TRANSACTION;
+
+UPDATE animals
+SET
+    species = 'unspecified';
+
+ROLLBACK;
+
+/*UPDATE species COLUMN TRANSACTION */
+BEGIN TRANSACTION;
+
+UPDATE animals
+SET
+    species = 'digimon'
+WHERE
+    name like '%mon';
+
+UPDATE animals
+SET
+    species = 'pokemon'
+WHERE
+    species = 'unspecified';
+
+COMMIT;

@@ -25,3 +25,31 @@ CREATE TABLE
     );
 
 ALTER TABLE animals ADD species VARCHAR(100) NOT NULL DEFAULT 'unspecified';
+
+/* owners table creation */
+DROP TABLE IF EXISTS owners;
+
+CREATE TABLE
+    owners (
+        ID SERIAL PRIMARY KEY,
+        full_name varchar(100) NOT NULL,
+        age integer
+    );
+
+/* species table creation */
+DROP TABLE IF EXISTS species;
+
+CREATE TABLE
+    species (ID SERIAL PRIMARY KEY, name varchar(100) NOT NULL);
+
+/* Modify animals table */
+ALTER TABLE animals
+DROP COLUMN species;
+
+ALTER TABLE animals ADD species_id integer;
+
+ALTER TABLE animals ADD owner_id integer;
+
+ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
+
+ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners (id);

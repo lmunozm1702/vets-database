@@ -84,7 +84,8 @@ After you're finished please remove all the comments and instructions!
 ### Key Features <a name="key-features"></a>
 
 - **[Animals table]** for store the pet info like name and date of birth.
-- **[query and update animals table]** for modify and get statistic data from animals table.
+- **[query and update animals table]** to modify and get statistic data from animals table.
+- **[query multiple tables]** Add tables for Owners and Species, set foreign keys and do queries using JOIN's.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,7 +182,6 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ 2 ] **[query multiple tables]**
 - [ 3 ] **[add "join table" for visits]**
 - [ 4 ] **[database performance audit]**
 - [ 5 ] **[add database schema diagram]**

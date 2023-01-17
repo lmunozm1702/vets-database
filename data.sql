@@ -164,16 +164,12 @@ VALUES
     ('Digimon');
 
 /* Modify inserted animals so it includes the species_id value */
-/* SELECT * FROM animals
-WHERE name LIKE '%mon'; */
 UPDATE animals
 SET
     species_id = 2
 WHERE
     name LIKE '%mon';
 
-/* SELECT * FROM animals
-WHERE name NOT LIKE '%mon'; */
 UPDATE animals
 SET
     species_id = 1

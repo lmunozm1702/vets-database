@@ -53,3 +53,43 @@ ALTER TABLE animals ADD owner_id integer;
 ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
 
 ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners (id);
+
+/* vets table creation */
+DROP TABLE IF EXISTS vets;
+
+CREATE TABLE
+    vets (
+        ID SERIAL PRIMARY KEY,
+        name varchar(100) NOT NULL,
+        age integer NOT NULL,
+        date_of_graduation DATE NOT NULL
+    );
+
+/* vets and species many2many handle table */
+DROP TABLE IF EXISTS specialization;
+
+CREATE TABLE
+    specialization (
+        species_id INTEGER,
+        vets_id INTEGER,
+        CONSTRAINT PK_Specialization PRIMARY KEY (species_id, vets_id)
+    );
+
+ALTER TABLE specialization ADD FOREIGN KEY (species_id) REFERENCES species (id);
+
+ALTER TABLE specialization ADD FOREIGN KEY (vets_id) REFERENCES vets (id);
+
+/* animals and vets many2many handle table */
+DROP TABLE IF EXISTS visits;
+
+CREATE TABLE
+    visits (
+        id SERIAL PRIMARY KEY,
+        animals_id INTEGER NOT NULL,
+        vets_id INTEGER NOT NULL,
+        date_of_visit DATE NOT NULL
+    );
+
+ALTER TABLE visits ADD FOREIGN KEY (animals_id) REFERENCES animals (id);
+
+ALTER TABLE visits ADD FOREIGN KEY (vets_id) REFERENCES vets (id);

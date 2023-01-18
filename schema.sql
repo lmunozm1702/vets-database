@@ -85,8 +85,8 @@ DROP TABLE IF EXISTS visits;
 CREATE TABLE
     visits (
         id SERIAL PRIMARY KEY,
-        animals_id INTEGER,
-        vets_id INTEGER,
+        animals_id INTEGER NOT NULL,
+        vets_id INTEGER NOT NULL,
         date_of_visit DATE NOT NULL
     );
 

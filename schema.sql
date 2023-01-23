@@ -111,7 +111,7 @@ ADD COLUMN email VARCHAR(120);
 CREATE INDEX visits_animals_id_asc ON visits (animals_id ASC);
 
 -- Create index on VETS to improve animals_id based queries
-CREATE INDEX vets_animals_id_asc ON visits (vets_id ASC);
+CREATE INDEX visits_vets_id_asc ON visits (vets_id ASC);
 
 -- Create index on email
 CREATE INDEX index_email ON owners (email);

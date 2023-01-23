@@ -631,8 +631,6 @@ FROM
     generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
 
 -- Validates execution time (Execution Time: 1224.975 ms)
-explain
-analyze
 SELECT
     COUNT(*)
 FROM

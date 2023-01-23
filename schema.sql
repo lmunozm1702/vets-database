@@ -108,10 +108,16 @@ ALTER TABLE owners
 ADD COLUMN email VARCHAR(120);
 
 -- Create index on visits to improve animals_id based queries
+DROP INDEX IF EXISTS visits_animals_id_asc;
+
 CREATE INDEX visits_animals_id_asc ON visits (animals_id ASC);
 
 -- Create index on VETS to improve animals_id based queries
-CREATE INDEX visits_vets_id_asc ON visits (vets_id ASC);
+DROP INDEX IF EXISTS visits_vets_id_asc;
+
+CREATE INDEX visits_vets_id_asc ON visits (vets_id);
 
 -- Create index on email
+DROP INDEX IF EXISTS index_email;
+
 CREATE INDEX index_email ON owners (email);

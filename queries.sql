@@ -182,8 +182,8 @@ WHERE
 GROUP BY
     species;
 
-/** Write queries (using JOIN) to answer the following questions: **/
-/* What animals belong to Melody Pond? */
+-- Write queries (using JOIN) to answer the following questions: **/
+-- What animals belong to Melody Pond? */
 SELECT
     animals.name
 FROM
@@ -382,3 +382,34 @@ ORDER BY
     count(*) DESC
 LIMIT
     1;
+
+-- Execution Time: 1810.400 ms
+-- (cost=309222.72..309222.73 rows=1 width=8)
+EXPLAIN
+ANALYZE
+SELECT
+    COUNT(*)
+FROM
+    visits
+where
+    animals_id = 4;
+
+-- 21 sec
+EXPLAIN
+ANALYZE
+SELECT
+    *
+FROM
+    visits
+where
+    vets_id = 2;
+
+-- 1.19 sec
+EXPLAIN
+ANALYZE
+SELECT
+    *
+FROM
+    owners
+where
+    email = 'owner_18327@mail.com';

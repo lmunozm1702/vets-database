@@ -106,3 +106,6 @@ ADD FOREIGN KEY (vets_id) REFERENCES vets (id);
 -- Add an email column to your owners table
 ALTER TABLE owners
 ADD COLUMN email VARCHAR(120);
+
+-- Create index on visits to improve animals_id based queries
+CREATE INDEX visits_animals_id_asc ON visits (animals_id ASC);

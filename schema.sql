@@ -24,7 +24,8 @@ CREATE TABLE
         PRIMARY KEY (ID)
     );
 
-ALTER TABLE animals ADD species VARCHAR(100) NOT NULL DEFAULT 'unspecified';
+ALTER TABLE animals
+ADD species VARCHAR(100) NOT NULL DEFAULT 'unspecified';
 
 /* owners table creation */
 DROP TABLE IF EXISTS owners;
@@ -46,13 +47,17 @@ CREATE TABLE
 ALTER TABLE animals
 DROP COLUMN species;
 
-ALTER TABLE animals ADD species_id integer;
+ALTER TABLE animals
+ADD species_id integer;
 
-ALTER TABLE animals ADD owner_id integer;
+ALTER TABLE animals
+ADD owner_id integer;
 
-ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
+ALTER TABLE animals
+ADD FOREIGN KEY (species_id) REFERENCES species (id);
 
-ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners (id);
+ALTER TABLE animals
+ADD FOREIGN KEY (owner_id) REFERENCES owners (id);
 
 /* vets table creation */
 DROP TABLE IF EXISTS vets;
@@ -75,9 +80,11 @@ CREATE TABLE
         CONSTRAINT PK_Specialization PRIMARY KEY (species_id, vets_id)
     );
 
-ALTER TABLE specialization ADD FOREIGN KEY (species_id) REFERENCES species (id);
+ALTER TABLE specialization
+ADD FOREIGN KEY (species_id) REFERENCES species (id);
 
-ALTER TABLE specialization ADD FOREIGN KEY (vets_id) REFERENCES vets (id);
+ALTER TABLE specialization
+ADD FOREIGN KEY (vets_id) REFERENCES vets (id);
 
 /* animals and vets many2many handle table */
 DROP TABLE IF EXISTS visits;
@@ -90,6 +97,27 @@ CREATE TABLE
         date_of_visit DATE NOT NULL
     );
 
-ALTER TABLE visits ADD FOREIGN KEY (animals_id) REFERENCES animals (id);
+ALTER TABLE visits
+ADD FOREIGN KEY (animals_id) REFERENCES animals (id);
 
-ALTER TABLE visits ADD FOREIGN KEY (vets_id) REFERENCES vets (id);
+ALTER TABLE visits
+ADD FOREIGN KEY (vets_id) REFERENCES vets (id);
+
+-- Add an email column to your owners table
+ALTER TABLE owners
+ADD COLUMN email VARCHAR(120);
+
+-- Create index on visits to improve animals_id based queries
+DROP INDEX IF EXISTS visits_animals_id_asc;
+
+CREATE INDEX visits_animals_id_asc ON visits (animals_id ASC);
+
+-- Create index on VETS to improve animals_id based queries
+DROP INDEX IF EXISTS visits_vets_id_asc;
+
+CREATE INDEX visits_vets_id_asc ON visits (vets_id);
+
+-- Create index on email
+DROP INDEX IF EXISTS index_email;
+
+CREATE INDEX index_email ON owners (email);

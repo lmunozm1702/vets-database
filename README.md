@@ -85,7 +85,11 @@ After you're finished please remove all the comments and instructions!
 
 - **[Animals table]** for store the pet info like name and date of birth.
 - **[query and update animals table]** to modify and get statistic data from animals table.
-- **[query multiple tables]** Add tables for Owners and Species, set foreign keys and do queries using JOIN's.
+- **[query multiple tables]** Add tables for Owners and Species, set foreign keys and do queries using
+  JOIN's.
+- **[add "join table" for visits]** Create the vets table. Solve many-to-many relationships for species and vets. Solve many-to-many relationships between the tables animals and vets.
+
+- **[database performance audit]** Colaborative deliverable, for include indexes to improve performance on given queries.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -172,6 +176,11 @@ Example:
 
 > Mention all of the collaborators of this project.
 
+👤 **Khomotso Mkansi**
+
+- GitHub: [@Momotsow](https://github.com/momotsow)
+- LinkedIn: [Linkedin](https://www.linkedin.com/in/khomotso-prudence-mkansi-aa7794b7/)
+
 👤 **Luis Muñoz**
 
 - GitHub: [@lmunozm1702](https://github.com/lmunozm1702)
@@ -182,8 +191,6 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ 3 ] **[add "join table" for visits]**
-- [ 4 ] **[database performance audit]**
 - [ 5 ] **[add database schema diagram]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

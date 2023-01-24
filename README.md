@@ -88,8 +88,8 @@ After you're finished please remove all the comments and instructions!
 - **[query multiple tables]** Add tables for Owners and Species, set foreign keys and do queries using
   JOIN's.
 - **[add "join table" for visits]** Create the vets table. Solve many-to-many relationships for species and vets. Solve many-to-many relationships between the tables animals and vets.
-
 - **[database performance audit]** Colaborative deliverable, for include indexes to improve performance on given queries.
+- **[add database schema diagram]** Colaborative deliverable, add schema image.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -190,8 +190,6 @@ Example:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-- [ 5 ] **[add database schema diagram]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
